@@ -14,17 +14,18 @@ public class Main
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("GestioneEventi");
     private static EntityManager em = emf.createEntityManager();
     public static void main( String[] args ) {
+        EventoDAO eventoDAO = new EventoDAO(em);
+        Evento event = new Evento("Colazione al parco", LocalDate.now(), "Buoni cornetti", TipoEvento.PRIVATO, 100);
+       // eventoDAO.save(event);
 
-        Evento event = new Evento("Colazione al parco", LocalDate.parse("2024-12-12"), "Buoni cornetti", "PUBBLICO", 100);
-        save(event);
+        Evento getEvent = eventoDAO.getByID(1);
+        // System.out.printl(getEvent);
 
-        em.close();
-        emf.close();
+        // eventoDAO.delete(getEvent);
+
+
+
     }
 
-    public static void save(Evento e){
-        em.getTransaction().begin();
-        em.persist(e);
-        em.getTransaction().commit();
-    }
+
 }

@@ -10,18 +10,17 @@ public class Evento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(nullable = false)
     private String titolo;
-
+    @Column(nullable = false)
     private LocalDate dataevento;
-
     private String descrizione;
-
-    private String tipoevento;
-
+    @Enumerated(EnumType.STRING)
+    private TipoEvento tipoevento;
     private int numeromassimopartecipanti;
 
-    public Evento(String titolo, LocalDate dataevento, String descrizione, String tipoevento, int numeromassimopartecipanti) {
+    public Evento(){}
+    public Evento(String titolo, LocalDate dataevento, String descrizione, TipoEvento tipoevento, int numeromassimopartecipanti) {
         this.titolo = titolo;
         this.dataevento = dataevento;
         this.descrizione = descrizione;
@@ -61,11 +60,11 @@ public class Evento {
         this.descrizione = descrizione;
     }
 
-    public String getTipoevento() {
+    public TipoEvento getTipoevento() {
         return tipoevento;
     }
 
-    public void setTipoevento(String tipoevento) {
+    public void setTipoevento(TipoEvento tipoevento) {
         this.tipoevento = tipoevento;
     }
 
